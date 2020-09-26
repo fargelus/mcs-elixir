@@ -14,9 +14,29 @@ defmodule Demo do
 
   def fact(0), do: 1
   def fact(n), do: n * fact(n - 1)
+
+  def run(list) do
+    printer = fn
+      {name, number} ->
+        "#{name} is #{number}" |> IO.puts
+
+      str ->
+        str |> IO.puts
+
+      _ -> # fallback
+        IO.puts "fallback"
+    end
+
+    #Enum.each list, fn(str) -> str |> IO.inspect end
+    Enum.each list, printer
+  end
 end
 
 Demo.my_function(3) |> IO.inspect
+
 Demo.fact(5) |> IO.inspect
 Demo.fact(-5) |> IO.inspect
 Demo.fact('sdfsdfsdf') |> IO.inspect
+
+Demo.run [1, 2, 3, 4, 5]
+Demo.run [{:a, 1}, {:b, 2}, {:c, 3}, {:d, 4}, {:e, 5}]
