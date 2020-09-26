@@ -30,6 +30,14 @@ defmodule Demo do
     #Enum.each list, fn(str) -> str |> IO.inspect end
     Enum.each list, printer
   end
+
+  def short_run(list) do
+    Enum.each list, &( IO.inspect(&1 * &1) )
+  end
+
+  def shortest_run(list) do
+    Enum.each list, &IO.inspect/1
+  end
 end
 
 Demo.my_function(3) |> IO.inspect
@@ -40,3 +48,6 @@ Demo.fact('sdfsdfsdf') |> IO.inspect
 
 Demo.run [1, 2, 3, 4, 5]
 Demo.run [{:a, 1}, {:b, 2}, {:c, 3}, {:d, 4}, {:e, 5}]
+
+Demo.short_run [5, 4, 3, 2, 1]
+Demo.shortest_run [5, 4, 3, 2, 1]
