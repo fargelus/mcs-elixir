@@ -14,7 +14,7 @@ defmodule Guesser do
   end
 
   def check({guess_number, _}, random) when guess_number == random do
-    IO.puts "You was right! The number was: #{random}"
+    IO.ANSI.green() <> "You was right! The number was: #{random}" <> IO.ANSI.reset() |> IO.puts
   end
 
   def check({_, _}, random), do: IO.puts "You wrong. The number was #{random}"
