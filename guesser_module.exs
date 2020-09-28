@@ -1,7 +1,7 @@
 defmodule Guesser do
   def start do
-    number = read_input("Enter limit number: ")
-    number |> random |> check(number)
+    rand = read_input("Enter limit number: ") |> random
+    read_input("Guess the number: ") |> check(rand)
   end
 
   defp read_input(msg) do
@@ -31,7 +31,7 @@ defmodule Guesser do
     IO.ANSI.green() <> "You was right! The number was: #{number}" <> IO.ANSI.reset() |> IO.puts
   end
 
-  defp check(_number, random), do: error("You wrong. The number was #{random}")
+  defp check(number, rand), do: error("You wrong. You entered #{number}, but the number was #{rand}")
 end
 
 Guesser.start
