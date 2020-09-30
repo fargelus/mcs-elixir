@@ -8,9 +8,12 @@ defmodule Guesser do
     IO.gets(msg) |> Integer.parse |> to_int
   end
 
-  defp to_int({number, _}), do: number
-
-  defp to_int(_), do: read_input("Please enter the valid number: ")
+  defp to_int(arg) do
+    case arg do
+      {number, _} -> number
+      _ -> read_input("Please enter the valid number: ")
+    end
+  end
 
   defp error(msg) do
     IO.ANSI.red() <> msg <> IO.ANSI.reset() |> IO.puts
