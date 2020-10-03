@@ -6,12 +6,12 @@ defmodule Demo do
     tail |> traverse
   end
 
-  def map([head | tail], cb) do
-    [map(head, cb) | map(tail, cb)]
-  end
+  def map([], cb), do: []
 
-  def map(element, cb), do: cb.(element)
+  def map([head | tail], cb) do
+    [cb.(head) | map(tail, cb)]
+  end
 end
 
 Demo.traverse([1, 2, 3, 4, 5])
-Demo.map([1, 2, 3], &IO.puts/1)
+Demo.map([1, 2, 3], fn(el) -> el * 2 end) |> IO.inspect
