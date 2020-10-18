@@ -33,13 +33,13 @@ end
 
 defmodule GuesserGame do
   def start do
-    players = [Guesser, Guesser]
-    start_player = Enum.random(players)
-    guessed_num = start_player.get_number("Enter limit number: ") |> check_limit(start_player)
-                                                                  |> random
+    players = [Mark: Guesser, Susan: Guesser]
+    {start_player_name, start_player} = Enum.random(players)
+    guessed_num = start_player.get_number("#{start_player_name} enter limit number: ") |> check_limit(start_player)
+                                                                                       |> random
 
     send :guesser_server, {:put, guessed_num }
-    [Mark: Enum.at(players, 0), Susan: Enum.at(players, 1)] |> process_move
+    players |> process_move
   end
 
   defp check_limit(limit, player) do
